@@ -3,7 +3,7 @@
 <ul>
 
     {% for item in recipes %}
-    <li>{{ item.title }} -- by {{ item.author.name }}!!!</li>
+    <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a> -- by {{ item.author.name }}!!!</li>
     {% endfor %}
 
 </ul>
