@@ -15,3 +15,13 @@ def index_view(request):
 def recipe_detail(request, recipe_id):
     recipe = RecipeItem.objects.get(id=recipe_id)
     return render(request, "recipe_detail.html", {"recipe": recipe})
+
+
+def author_detail(request, author_id):
+    author_obj = Author.objects.get(id=author_id)
+    recipes = RecipeItem.objects.filter(author=author_obj)
+
+    return render(request, "author_detail.html", {
+        "author": author_obj,
+        "recipes": recipes
+    })

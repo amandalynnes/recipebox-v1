@@ -1,9 +1,7 @@
 <h1>{{ heading|default:"Recipe Box!" }}</h1>
 
 <ul>
-
     {% for item in recipes %}
-    <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a> -- by {{ item.author.name }}!!!</li>
+        <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a> -- by <a href="/authors/{{ item.author.id }}"> {{ item.author.name }}</a>!!!</li>
     {% endfor %}
-
 </ul>
