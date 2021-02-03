@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "recipebox-v1-amandalynnes"
+version = "0.1.0"
+description = "Create a new application that serves recipes from different authors, much like our demo application does for news."
+authors = ["Amanda Simmons <carpe737diem@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^3.1.6"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
