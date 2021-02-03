@@ -8,7 +8,7 @@ from recipe_app.models import Author, RecipeItem
 def index_view(request):
     recipes = RecipeItem.objects.all()
     return render(request, "index.html", {
-        "heading": "Recipes!", "recipes": recipes
+        "heading": "Recipebox!", "recipes": recipes
     })
 
 
