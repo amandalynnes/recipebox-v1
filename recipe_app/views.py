@@ -28,6 +28,6 @@ def author_detail(request, author_id):
     })
 
 
-def recipe_submit(request):
+def AddRecipeForm(request):
     form = RecipeItemForm()
-    return render(request, "recipe_submit.html", {'form': form})
+    return render(request, "AddRecipeForm.html", {'form': form})
