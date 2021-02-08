@@ -1,16 +1,25 @@
-<h1>{{ heading|default:"Recipes!" }}</h1>
-<h3>Recipes:</h3>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-<ul>
-    {% for item in recipes %}
-        <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
-    {% endfor %}
-</ul>
+</head>
 
-<a href="/recipe/add/">Add A Recipe</a>
 
-<p>
+<body>
+    <h1>{{ heading|default:"Recipes!" }}</h1>
+    <h3>Recipes:</h3>
 
-</p>
+    <ul>
+        {% for item in recipes %}
+            <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
 
-<a href="/author/add/">Add An Author</a>
+    <a href="/recipe/add/">Add A Recipe</a>
+
+    <p>
+
+    </p>
+
+    <a href="/author/add/">Add An Author</a>
+</body>

@@ -1,14 +1,22 @@
-<h1>{{ author.name }}</h1>
-<h3>{{ author.bio }}</h3>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-<p>
-    This person has submitted the following recipes:
-</p>
+</head>
 
-<ul>
-    {% for item in recipes %}
-        <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
-    {% endfor %}
-</ul>
+<body>
+    <h1>{{ author.name }}</h1>
+    <h3>{{ author.bio }}</h3>
 
-<a href="/">Home</a>
+    <p>
+        This person has submitted the following recipes:
+    </p>
+
+    <ul>
+        {% for item in recipes %}
+            <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Home</a>
+</body>
