@@ -1,4 +1,11 @@
-{% if message %}
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+    {% if message %}
     <h1>{{ message }}</h1>
 {% endif %}
 
@@ -7,3 +14,4 @@
     {{ form.as_p }}
     <input type="submit" value="Submit!">
 </form>
+</body>
