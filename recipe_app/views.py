@@ -29,5 +29,24 @@ def author_detail(request, author_id):
 
 
 def AddRecipeForm(request):
+    context = {}
+
+    if request.method == 'POST':
+        form = RecipeItemForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            RecipeItem.objects.create(
+               title=data['title'],
+               author=data['author'],
+               description=data['description'],
+               time_required=data['time_required'],
+               instructions=data['instructions'] 
+            )
+            context.update({'message': 'Submission Successful! :)'})
+
     form = RecipeItemForm()
-    return render(request, "AddRecipeForm.html", {'form': form})
+    context.update({'form': form})
+    return render(
+        request, 
+        "AddRecipeForm.html", 
+        context)
