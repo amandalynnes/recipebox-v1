@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from recipe_app.models import Author, RecipeItem
+from recipe_app.forms import RecipeItemForm
 
 # Create your views here.
 
@@ -25,3 +26,8 @@ def author_detail(request, author_id):
         "author": author_obj,
         "recipes": recipes
     })
+
+
+def recipe_submit(request):
+    form = RecipeItemForm()
+    return render(request, "recipe_submit.html", {'form': form})
