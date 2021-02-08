@@ -22,7 +22,7 @@ from django import forms
 from recipe_app.models import Author
 
 
-class RecipeItemForm(forms.Form):
+class AddRecipeForm(forms.Form):
     title = forms.CharField(max_length=40)
     author = forms.ModelChoiceField(queryset=Author.objects.all())
     description = forms.CharField(widget=forms.Textarea)
@@ -30,7 +30,7 @@ class RecipeItemForm(forms.Form):
     instructions = forms.CharField(widget=forms.Textarea)
 
 
-class AuthorForm(forms.ModelForm):
+class AddAuthorForm(forms.ModelForm):
     class Meta:
         model = Author
         fields = [
