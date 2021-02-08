@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from recipe_app.models import Author, RecipeItem
-from recipe_app.forms import RecipeItemForm
+from recipe_app.forms import RecipeItemForm, AuthorForm
 
 # Create your views here.
 
@@ -48,6 +48,18 @@ def AddRecipeForm(request):
     form = RecipeItemForm()
     context.update({'form': form})
     return render(
-        request, 
-        "AddRecipeForm.html", 
-        context)
+        request,
+        "GenericForm.html",
+        # "AddRecipeForm.html",
+        context
+    )
+
+
+def AddAuthorForm(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        form.save()
+        return HttpResponseRedirect(reverse('homepage'))
+
+    form = AuthorForm()
+    return render(request, 'GenericForm.html', {'form': form})
