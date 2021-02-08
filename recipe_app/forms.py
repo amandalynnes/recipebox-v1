@@ -21,6 +21,7 @@ class RecipeItem(models.Model):
 from django import forms
 from recipe_app.models import Author
 
+
 class RecipeItemForm(forms.Form):
     title = forms.CharField(max_length=40)
     author = forms.ModelChoiceField(queryset=Author.objects.all())

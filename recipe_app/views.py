@@ -40,10 +40,9 @@ def AddRecipeForm(request):
                author=data['author'],
                description=data['description'],
                time_required=data['time_required'],
-               instructions=data['instructions'] 
+               instructions=data['instructions']
             )
             return HttpResponseRedirect(reverse('recipe_detail', args=[new_item.id]))
-
 
     form = RecipeItemForm()
     context.update({'form': form})
