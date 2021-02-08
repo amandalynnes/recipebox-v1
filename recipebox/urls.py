@@ -18,9 +18,9 @@ from django.urls import path
 from recipe_app.views import index_view, recipe_detail, author_detail, AddRecipeForm
 """example: localhost:8000/recipes/3/"""
 urlpatterns = [
-    path('', index_view),
-    path('recipes/<int:recipe_id>/', recipe_detail),
+    path('', index_view, name='homepage'),
+    path('recipes/<int:recipe_id>/', recipe_detail, name='recipe_detail'),
     path('authors/<int:author_id>/', author_detail),
-    path('recipe/add/', AddRecipeForm),
+    path('recipe/add/', AddRecipeForm, name='add_recipe'),
     path('admin/', admin.site.urls),
 ]

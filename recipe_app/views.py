@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from recipe_app.models import Author, RecipeItem
 from recipe_app.forms import RecipeItemForm
@@ -35,14 +35,15 @@ def AddRecipeForm(request):
         form = RecipeItemForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            RecipeItem.objects.create(
+            new_item = RecipeItem.objects.create(
                title=data['title'],
                author=data['author'],
                description=data['description'],
                time_required=data['time_required'],
                instructions=data['instructions'] 
             )
-            context.update({'message': 'Submission Successful! :)'})
+            return HttpResponseRedirect(reverse('recipe_detail', args=[new_item.id]))
+
 
     form = RecipeItemForm()
     context.update({'form': form})
