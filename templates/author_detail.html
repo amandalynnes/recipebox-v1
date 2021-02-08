@@ -6,17 +6,17 @@
 
 <body>
     <h1>{{ author.name }}</h1>
-<h3>{{ author.bio }}</h3>
+    <h3>{{ author.bio }}</h3>
 
-<p>
-    This person has submitted the following recipes:
-</p>
+    <p>
+        This person has submitted the following recipes:
+    </p>
 
-<ul>
-    {% for item in recipes %}
-        <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for item in recipes %}
+            <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
 
-<a href="/">Home</a>
+    <a href="/">Home</a>
 </body>

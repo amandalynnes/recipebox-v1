@@ -7,19 +7,19 @@
 
 <body>
     <h1>{{ heading|default:"Recipes!" }}</h1>
-<h3>Recipes:</h3>
+    <h3>Recipes:</h3>
 
-<ul>
-    {% for item in recipes %}
-        <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for item in recipes %}
+            <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
 
-<a href="/recipe/add/">Add A Recipe</a>
+    <a href="/recipe/add/">Add A Recipe</a>
 
-<p>
+    <p>
 
-</p>
+    </p>
 
-<a href="/author/add/">Add An Author</a>
+    <a href="/author/add/">Add An Author</a>
 </body>
