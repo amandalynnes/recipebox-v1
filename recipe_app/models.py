@@ -1,11 +1,23 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 """
+User:
+---
+username
+password
+email
+
+one to one
+
 Author model:
 ---
 Name (CharField)
 Bio (TextField)
+
+one to many
 
 Recipe Model:
 ---
@@ -20,6 +32,7 @@ Instructions (TextField)
 class Author(models.Model):
     name = models.CharField(max_length=150)
     bio = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
