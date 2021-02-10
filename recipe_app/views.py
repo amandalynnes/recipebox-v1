@@ -4,6 +4,7 @@ from recipe_app.models import Author, RecipeItem
 from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -44,7 +45,7 @@ def author_detail(request, author_id):
         "recipes": recipes
     })
 
-
+@login_required
 def add_recipe(request):
     context = {}
 
@@ -70,7 +71,7 @@ def add_recipe(request):
         context
     )
 
-
+@login_required
 def add_author(request):
     if request.method == 'POST':
         form = AddAuthorForm(request.POST)
