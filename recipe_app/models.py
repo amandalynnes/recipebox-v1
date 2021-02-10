@@ -30,17 +30,17 @@ Instructions (TextField)
 
 
 class Author(models.Model):
-    name = models.CharField(max_length=150)
+    author = models.CharField(max_length=150)
     bio = models.TextField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.author
 
 
 class RecipeItem(models.Model):
     title = models.CharField(max_length=40)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, null=True, on_delete=models.CASCADE)
     description = models.TextField()
     time_required = models.CharField(max_length=100)
     instructions = models.TextField()
