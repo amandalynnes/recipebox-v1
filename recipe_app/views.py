@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from recipe_app.models import Author, RecipeItem
-from recipe_app.forms import AddRecipeForm, AddAuthorForm
-
+from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 # Create your views here.
 
 
@@ -11,6 +12,22 @@ def index_view(request):
     return render(request, "index.html", {
         "heading": "Recipebox!", "recipes": recipes
     })
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(
+                request, username=data['username'], password=data['password']
+            )
+            if user:
+                login(request, user)
+            return HttpResponseRedirect(reverse("homepage"))
+
+    form = LoginForm()
+    return render(request, "generic_form.html", {'form': form})
 
 
 def recipe_detail(request, recipe_id):
@@ -37,7 +54,7 @@ def add_recipe(request):
             data = form.cleaned_data
             new_item = RecipeItem.objects.create(
                title=data['title'],
-               author=data['author'],
+               author=request.user.author,
                description=data['description'],
                time_required=data['time_required'],
                instructions=data['instructions']
@@ -48,7 +65,7 @@ def add_recipe(request):
     context.update({'form': form})
     return render(
         request,
-        # "GenericForm.html",
+        # "generic_form.html",
         "add_recipe.html",
         context
     )

@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from recipe_app.views import index_view, recipe_detail, author_detail, add_recipe, add_author
+from recipe_app import views
 """example: localhost:8000/recipes/3/"""
 urlpatterns = [
-    path('', index_view, name='homepage'),
-    path('recipes/<int:recipe_id>/', recipe_detail, name='recipe_detail'),
-    path('authors/<int:author_id>/', author_detail),
-    path('addrecipe/', add_recipe, name='add_recipe'),
-    path('addauthor/', add_author, name='add_author'),
+    path('', views.index_view, name='homepage'),
+    path('recipes/<int:recipe_id>/', views.recipe_detail, name='recipe_detail'),
+    path('authors/<int:author_id>/', views.author_detail),
+    path('addrecipe/', views.add_recipe, name='add_recipe'),
+    path('addauthor/', views.add_author, name='add_author'),
+    path('login/', views.login_view, name='login'),
     path('admin/', admin.site.urls),
 ]
