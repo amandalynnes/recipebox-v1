@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from recipe_app.models import Author, RecipeItem
 from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
-# from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -53,7 +52,6 @@ def author_detail(request, author_id):
 
 @login_required()
 def add_recipe(request):
-    context = {}
     print(request.user)
     if request.method == 'POST':
         form = AddRecipeForm(request.POST)
@@ -69,10 +67,8 @@ def add_recipe(request):
             return HttpResponseRedirect(reverse('recipe_detail', args=[new_item.id]))
 
     form = AddRecipeForm()
-    # context.update({'form': form})
     return render(
         request,
-        # "generic_form.html",
         "add_recipe.html",
         {'form': form}
     )
@@ -80,14 +76,10 @@ def add_recipe(request):
 
 @login_required()
 def add_author(request):
-    # context = {}
-    # authors = Author.objects.all()
     if request.user.is_staff:
         if request.method == 'POST':
             form = AddAuthorForm(request.POST)
             print(form)
-            # form.save()
-            # return HttpResponseRedirect(reverse('homepage'))
 
             if form.is_valid():
                 data = form.cleaned_data
@@ -96,11 +88,8 @@ def add_author(request):
                     user=request.user,
                     author=data['author'],
                     bio=data['bio'],
-                    # username=data['username'],
-                    # password=data['password']
                     )
                 return HttpResponseRedirect(reverse('author_detail', args=[new_item.id]))
 
         form = AddAuthorForm()
-        # context.update({'form': form})
         return render(request, 'add_author.html', {'form': form})
