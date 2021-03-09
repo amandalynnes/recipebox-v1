@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-
+from django.contrib.auth.models import User
 from recipe_app.models import Author, RecipeItem
-from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm
+from recipe_app.forms import AddRecipeForm, AddAuthorForm, LoginForm, EditRecipeForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -46,7 +46,8 @@ def author_detail(request, author_id):
 
     return render(request, "author_detail.html", {
         "author": author_obj,
-        "recipes": recipes
+        "recipes": recipes,
+        'favorites': author_obj.favorites.all(),
     })
 
 
@@ -74,6 +75,7 @@ def add_recipe(request):
     )
 
 
+
 @login_required()
 def add_author(request):
     if request.user.is_staff:
@@ -93,3 +95,23 @@ def add_author(request):
 
         form = AddAuthorForm()
         return render(request, 'add_author.html', {'form': form})
+
+
+def favorite_view(request, favorite_id):
+    author = Author.objects.get(user=request.user)
+    favored_recipe = RecipeItem.objects.get(id=favorite_id)
+    author.favorites.add(favored_recipe)
+    author.save()
+    return HttpResponseRedirect(reverse('homepage'))
+
+
+@login_required
+def edit_recipe_view(request, recipe_id):
+    recipe = RecipeItem.objects.get(id=recipe_id,)
+    if request.method == 'POST':
+        form = EditRecipeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('recipe_detail', args=(id)))
+    form = EditRecipeForm()
+    return render(request, 'generic_form.html', {'form': form})

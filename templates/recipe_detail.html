@@ -7,6 +7,18 @@
 <body>
     <h1>{{ recipe.title }}</h1>
     <h3> By: <a href="/authors/{{ recipe.author.id }}"> {{ recipe.author.author }}</a></h3>
+    {% if request.user.is_staff or user.id  == recipe.author.id%}
+        <p>
+            <a href="/edit_recipe/{{ recipe.id }}"><button type="button" class="btn btn-dark">Edit</button></a>
+        </p>
+{% endif %}
+
+{% if user.is_authenticated %}
+        <p>
+            <button><a href="/add_favorite/{{ recipe.id }}">Favorite this Recipe</a></button>
+        </p>
+{% endif %} 
+
 
     <p>
         Description: {{ recipe.description }}

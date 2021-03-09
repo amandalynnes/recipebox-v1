@@ -33,6 +33,7 @@ class Author(models.Model):
     author = models.CharField(max_length=150)
     bio = models.TextField()
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    favorites = models.ManyToManyField('RecipeItem', related_name='favorite', symmetrical=False)
 
     def __str__(self):
         return self.author

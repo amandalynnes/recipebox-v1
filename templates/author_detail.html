@@ -18,6 +18,19 @@
             <li><a href="/recipes/{{ item.id }}/">{{ item.title }}</a></li>
         {% endfor %}
     </ul>
+</ul>
+<br>
+<h3>---{{ author.name }}'s favorite recipes---</h3>
+
+{% for favorite in favorites %}
+  <p><a href="/recipe/{{favorite.id}}/">{{favorite.title}}</a></p>
+  <p>Author: {{ favorite.author }}</p>
+  <p>Description: {{ favorite.description }}</p>
+  <p>Time Required: {{ favorite.time_required }}</p>
+  <p>Instructions: {{ favorite.instructions }}</p>
+  <br>
+{% endfor %}
+
 
     
 </body>
